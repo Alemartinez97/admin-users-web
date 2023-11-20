@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // const jwt = localStorage.getItem("token");
-const jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjIzMjQyMzIsImVtYWlsIjoibGVlQHByaXNtYS5pbyIsImlhdCI6MTcwMDQwODU5NiwiZXhwIjoxNzAwNDM4NTk2fQ.3IUWJyGATFQ3pG9MszHRm9RgzFvm8pcnQOJV3XYRYrI";
+const jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjIzODkyNDIzMiwiZW1haWwiOiJsZUBwcmlzbWEuaW8iLCJpYXQiOjE3MDA0ODU4MjQsImV4cCI6MTcwMDUxNTgyNH0.v8udjK5jrqEYOc3OwNhsoNHJwN-Ens0siQiCsdF2H3I";
 const baseUrl = 'http://localhost:3000';
 const instance = axios.create({
   baseURL: baseUrl,
