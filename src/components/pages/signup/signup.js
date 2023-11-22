@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -44,19 +44,23 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
-
+const userInfo = {
+  surname: "",
+  email: "",
+  role: "",
+  name: "",
+  dni: "",
+  age: "",
+  phone: "",
+}
 const Signup = ({ history }) => {
   const classes = useStyles();
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { enqueueSnackbar } = useSnackbar();
+  const [data, setData] = useState(userInfo);
+  const { name, surname, dni, age, phone, password, email } = data;
   const handleSubmit = (response) => {
-    const values = {
-      email,
-      password,
-    };
     return api
-      .post("/signup", values)
+      .post("/signup", data)
       .then((result) => {
         enqueueSnackbar("Usuario " + email + " registrado con exito ", {
           variant: "success",
@@ -86,13 +90,80 @@ const Signup = ({ history }) => {
             <TextField
               variant="outlined"
               autoFocus
+              label="Name"
+              name="name"
+              margin="normal"
+              value={name}
+              className={classes.textField}
+              onChange={(e) =>
+                setData({ ...data, name: e.target.value })
+              }
+              fullWidth
+            />
+            <TextField
+              variant="outlined"
+              autoFocus
+              label="Apellido"
+              name="surname"
+              margin="normal"
+              value={surname}
+              className={classes.textField}
+              onChange={(e) =>
+                setData({ ...data, surname: e.target.value })
+              }
+              fullWidth
+            />
+            <TextField
+              variant="outlined"
+              autoFocus
+              label="Edad"
+              name="age"
+              margin="normal"
+              value={age}
+              className={classes.textField}
+              onChange={(e) =>
+                setData({ ...data, age: e.target.value })
+              }
+              fullWidth
+            />
+            <TextField
+              variant="outlined"
+              autoFocus
+              label="Celular"
+              name="phone"
+              margin="normal"
+              value={phone}
+              className={classes.textField}
+              onChange={(e) =>
+                setData({ ...data, phone: e.target.value })
+              }
+              fullWidth
+            />
+            <TextField
+              variant="outlined"
+              autoFocus
+              label="Nro de documento"
+              name="dni"
+              margin="normal"
+              value={dni}
+              className={classes.textField}
+              onChange={(e) =>
+                setData({ ...data, dni: e.target.value })
+              }
+              fullWidth
+            />
+            <TextField
+              variant="outlined"
+              autoFocus
               label="Email"
               type="email"
               name="email"
               margin="normal"
               value={email}
               className={classes.textField}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) =>
+                setData({ ...data, email: e.target.value })
+              }
               fullWidth
             />
             <TextField
@@ -102,12 +173,13 @@ const Signup = ({ history }) => {
               margin="normal"
               value={password}
               className={classes.textField}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) =>
+                setData({ ...data, password: e.target.value })
+              }
               variant="outlined"
               fullWidth
             />
             <Button
-              // type="submit"
               className={classes.submit}
               variant="contained"
               color="primary"

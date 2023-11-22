@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Login = (props) => {
-  const { success, error, loading, history } = props;
+  const { history } = props;
   const classes = useStyles();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const [email, setEmail] = useState("");
