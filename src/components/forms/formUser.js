@@ -127,7 +127,7 @@ export default function FormUser({ setUserData, userData, handleClose, submittin
             </Grid>
             <Grid item xs={12}>
                 <FormControl className={classes.formControl} fullWidth>
-                    <InputLabel id="demo-simple-select-label">Rol</InputLabel>
+                    {!userData.role && <InputLabel id="demo-simple-select-label">Rol</InputLabel>}
                     <Select
                         labelId="demo-simple-select-label"
                         id="role"

@@ -90,7 +90,7 @@ const TableUser = (props) => {
     }
   };
   return (
-    <Container>
+    <Container style={{marginTop:'25px'}}>
       <>
         {<FormUser setUserData={setUserData} userData={userData} handleClose={handleClose} submitting={submitting} open={open} handleSubmit={handleSubmit} />}
         <MaterialTable

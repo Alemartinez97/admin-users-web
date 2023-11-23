@@ -14,30 +14,39 @@ import store from "./components/store/index";
 import routes from "./components/routes";
 import tableUser from "./components/pages/users/tableUser";
 import NotFound from "./components/pages/notFound/notFound";
+import { useProtectedRoute } from "./components/hooks/useProtectedRoute";
 
 const App = connect(
   null,
   mapDispatchToProps
 )((props) => {
-  const protectedRoute = localStorage.getItem("token");
+  const  protectedRoute = useProtectedRoute();
 
   useEffect(() => {
     instance.get(`/users`).then((result) => {
       props.addUser(result.data);
     }).catch(err => console.error(err));
-  });
+    // instance.post(`/protected-route`).then((result) => {
+    //   protectedRoute = true;
+    // }).catch(err => {
+    //   protectedRoute = false;
+    //         localStorage.clear();
+    //   console.error(err);
+    // });
+    console.log("protectedRoute: ",protectedRoute);
+  },[]);
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={routes.signup} component={Signup} />
         <Route exact path={routes.login} component={Login} />
-        <Route component={NotFound} />
         {
           protectedRoute && <Route>
             <Menu></Menu>
             <Route exact path={routes.tableUser} component={tableUser} />
           </Route>
         }
+        <Route component={NotFound} />
       </Switch>
     </BrowserRouter>
   );
