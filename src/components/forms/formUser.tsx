@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function FormUser({ setUserData, userData, handleClose, submitting, open, handleSubmit }) {
+export default function FormUser({ setUserData, userData, handleClose, submitting, open, handleSubmit }: IUserFormProps) {
     const classes = useStyles();
     const body = (
         <form
@@ -126,7 +126,7 @@ export default function FormUser({ setUserData, userData, handleClose, submittin
                 </Grid>
             </Grid>
             <Grid item xs={12}>
-                <FormControl className={classes.formControl} fullWidth>
+                <FormControl fullWidth>
                     {!userData.role && <InputLabel id="demo-simple-select-label">Rol</InputLabel>}
                     <Select
                         labelId="demo-simple-select-label"

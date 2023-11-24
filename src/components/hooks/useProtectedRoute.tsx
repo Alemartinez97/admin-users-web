@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import instance from "../utils/api";
+import { post } from '../utils/api';
 export const useProtectedRoute = () => {
     const [state, setState] = useState(false);
     useEffect(() => {
-        instance.post(`/protected-route`).then((result) => {
+        post(`/protected-route`).then((result: any) => {
             setState(true);
-        }).catch(err => {
-            localStorage.clear("token");
+        }).catch((err: Error) => {
+            localStorage.clear();
             setState(false)
             console.error(err);
         });

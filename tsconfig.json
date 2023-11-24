@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+      "target": "es5",
+      "lib": ["dom", "dom.iterable", "esnext"],
+      "jsx": "react",                      /* Especifica el tipo de transformación JSX que se aplicará: "react" o "preserve". */
+      "strict": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "outDir": "./dist"
+    },
+    "include": [
+      "src/**/*.ts",
+      "src/**/*.tsx"                      /* Incluye archivos TypeScript y TypeScript con JSX. */
+, "src/components/forms/icons.js"    ],
+    "exclude": [
+      "node_modules"
+    ]
+  }
+  

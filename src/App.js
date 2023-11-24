@@ -21,19 +21,10 @@ const App = connect(
   mapDispatchToProps
 )((props) => {
   const  protectedRoute = useProtectedRoute();
-
   useEffect(() => {
     instance.get(`/users`).then((result) => {
       props.addUser(result.data);
     }).catch(err => console.error(err));
-    // instance.post(`/protected-route`).then((result) => {
-    //   protectedRoute = true;
-    // }).catch(err => {
-    //   protectedRoute = false;
-    //         localStorage.clear();
-    //   console.error(err);
-    // });
-    console.log("protectedRoute: ",protectedRoute);
   },[]);
   return (
     <BrowserRouter>

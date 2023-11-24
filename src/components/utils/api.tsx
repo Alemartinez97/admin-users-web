@@ -15,16 +15,16 @@ const instance = axios.create({
   }, ...axios.defaults.transformRequest],
 });
 
-export const get = url => {
+export const get = (url : string) => {
   return instance.get(`${url}`);
 };
-export const post = (url, body) => {
+export const post = (url: string, body?: IUser) => {
   return instance.post(`${url}`, body);
 };
-export const _delete = url => {
+export const _delete = (url : string)=> {
   return instance.delete(`${url}`);
 };
-export const put = (url, body) => {
+export const put = (url: string, body?: IUser) => {
   return instance.put(`${url}`, body);
 };
 export default {
