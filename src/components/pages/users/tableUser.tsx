@@ -11,7 +11,7 @@ import { useSnackbar } from "notistack";
 import tableIcons from "../../forms/icons";
 import { deleteUser, setUser, editUser } from "../../actions/index";
 import FormUser from "../../forms/formUser";
-const userInfo =
+const userInfo: IUser =
 {
   surname: "",
   email: "",
@@ -20,8 +20,9 @@ const userInfo =
   dni: "",
   age: "",
   phone: "",
+  tableData: "",
 }
-const TableUser = (props) => {
+const TableUser = (props: any) => {
   const { submitting, user } = props;
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState(false);
@@ -90,7 +91,7 @@ const TableUser = (props) => {
     }
   };
   return (
-    <Container style={{marginTop:'25px'}}>
+    <Container style={{ marginTop: '25px' }}>
       <>
         {<FormUser setUserData={setUserData} userData={userData} handleClose={handleClose} submitting={submitting} open={open} handleSubmit={handleSubmit} />}
         <MaterialTable
@@ -107,7 +108,7 @@ const TableUser = (props) => {
             },
             {
               icon: () => <span>{<tableIcons.Edit />}</span>,
-              onClick: (event, rowData) => {
+              onClick: (event, rowData: any) => {
                 setUserData(rowData);
                 setOpen(true);
                 setValue(true);
@@ -198,15 +199,15 @@ const TableUser = (props) => {
     </Container>
   );
 };
-const mapStateToProps = (state) => {
-  return { user: state.user };
+const mapStateToProps = (state: any) => {
+  return { user: state?.user };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
-    setUser: (user) => dispatch(setUser(user)),
-    editUser: (user) => dispatch(editUser(user)),
-    deleteUser: (user) => dispatch(deleteUser(user)),
+    setUser: (user: IUser) => dispatch(setUser(user)),
+    editUser: (user: IUser) => dispatch(editUser(user)),
+    deleteUser: (user: IUser) => dispatch(deleteUser(user)),
   };
 };
 

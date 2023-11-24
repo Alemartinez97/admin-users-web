@@ -45,13 +45,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Login = (props) => {
+const Login = (props: { history: any; }) => {
   const { history } = props;
   const classes = useStyles();
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleSubmit = (response) => {
+  const handleSubmit = () => {
     const values = {
       email,
       password,
@@ -96,7 +96,6 @@ const Login = (props) => {
               name="email"
               margin="normal"
               value={email}
-              className={classes.textField}
               onChange={(e) => setEmail(e.target.value)}
               fullWidth
             />
@@ -106,16 +105,14 @@ const Login = (props) => {
               type="password"
               margin="normal"
               value={password}
-              className={classes.textField}
               onChange={(e) => setPassword(e.target.value)}
               variant="outlined"
               fullWidth
             />
             <Button
-              // type="submit"
               className={classes.submit}
               variant="contained"
-              color="blue"
+              color="primary"
               onClick={() => handleSubmit()}
               fullWidth
             >

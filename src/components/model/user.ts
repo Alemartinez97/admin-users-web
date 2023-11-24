@@ -1,10 +1,11 @@
 interface IUser {
     name: string,
     surname: string,
-    age: number,
-    dni: number,
+    age: number | string,
+    dni: number | string,
     email: string,
     password?: string,
-    phone: number,
-    role: string
+    phone: number | string,
+    role: string,
+    tableData?: any
 }
