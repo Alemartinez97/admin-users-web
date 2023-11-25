@@ -11,6 +11,8 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
+import { isValid } from "../utils/isValid";
+import { AGE, DNI, EMAIL, NAME, PHONE } from "../constant/constant";
 
 const useStyles = makeStyles((theme) => ({
     dialog: {
@@ -30,6 +32,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function FormUser({ setUserData, userData, handleClose, submitting, open, handleSubmit }: IUserFormProps) {
+    const {password, name, surname,age,dni, email, role, phone } = userData;
+    const functionOfEmail = isValid(email, EMAIL);
+    const functionOfPhone = isValid(phone.toString(), PHONE);
+    const functionOfAge = isValid(age.toString(), AGE);
+    const functionOfDni = isValid(dni.toString(), DNI);
+    const functionOfName = isValid(name, NAME);
+    const functionOfSurname = isValid(surname, NAME);
+
     const classes = useStyles();
     const body = (
         <form
@@ -47,8 +57,9 @@ export default function FormUser({ setUserData, userData, handleClose, submittin
                         onChange={(e) =>
                             setUserData({ ...userData, name: e.target.value })
                         }
-                        value={userData.name}
-                        label="Nombre"
+                        value={name}
+                        label={!functionOfName ? "Nombre Invalido" : "Nombre"}
+                        error={!functionOfName}
                         fullWidth
                     />
                 </Grid>
@@ -58,8 +69,9 @@ export default function FormUser({ setUserData, userData, handleClose, submittin
                         onChange={(e) =>
                             setUserData({ ...userData, surname: e.target.value })
                         }
-                        value={userData.surname}
-                        label="Apellido"
+                        value={surname}
+                        label={!functionOfSurname ? "Apellido Invalido" : "Apellido"}
+                        error={!functionOfSurname}
                         fullWidth
                     />
                 </Grid>
@@ -70,8 +82,9 @@ export default function FormUser({ setUserData, userData, handleClose, submittin
                         onChange={(e) =>
                             setUserData({ ...userData, age: e.target.value })
                         }
-                        value={userData.age}
-                        label="Edad"
+                        value={age}
+                        label={!functionOfAge ? "Edad Invalida" : "Edad"}
+                        error={!functionOfAge}
                         fullWidth
                     />
                 </Grid>
@@ -82,8 +95,9 @@ export default function FormUser({ setUserData, userData, handleClose, submittin
                         onChange={(e) =>
                             setUserData({ ...userData, phone: e.target.value })
                         }
-                        value={userData.phone}
-                        label="Celular"
+                        value={phone}
+                        label={!functionOfPhone ? "Celular Invalido" : "Celular"}
+                        error={!functionOfPhone}
                         fullWidth
                     />
                 </Grid>
@@ -95,8 +109,9 @@ export default function FormUser({ setUserData, userData, handleClose, submittin
                         onChange={(e) =>
                             setUserData({ ...userData, dni: e.target.value })
                         }
-                        value={userData.dni}
-                        label="Nro de Documento"
+                        value={dni}
+                        label={!functionOfDni ? "Dni invalido" : "Nro de documento"}
+                        error={!functionOfDni}
                         fullWidth
                     />
                 </Grid>
@@ -108,10 +123,10 @@ export default function FormUser({ setUserData, userData, handleClose, submittin
                         onChange={(e) =>
                             setUserData({ ...userData, email: e.target.value })
                         }
-                        value={userData.email}
-                        label={"Error"}
+                        value={email}
+                        label={!functionOfEmail ? "Correo Invalido" : "Email"}
+                        error={!functionOfEmail}
                         fullWidth
-                        error
                     />
                 </Grid>
                 <Grid item xs={12}>
@@ -121,7 +136,7 @@ export default function FormUser({ setUserData, userData, handleClose, submittin
                         onChange={(e) =>
                             setUserData({ ...userData, password: e.target.value })
                         }
-                        value={userData.password}
+                        value={password}
                         label={"Clave"}
                         fullWidth
                     />
@@ -129,11 +144,11 @@ export default function FormUser({ setUserData, userData, handleClose, submittin
             </Grid>
             <Grid item xs={12}>
                 <FormControl fullWidth>
-                    {!userData.role && <InputLabel id="demo-simple-select-label">Rol</InputLabel>}
+                    {!role && <InputLabel id="demo-simple-select-label">Rol</InputLabel>}
                     <Select
                         labelId="demo-simple-select-label"
                         id="role"
-                        value={userData.role}
+                        value={role}
                         onChange={(e) => setUserData({ ...userData, role: e.target.value })}
                     >
                         <MenuItem value={"Admin"}>Admin</MenuItem>
@@ -144,7 +159,7 @@ export default function FormUser({ setUserData, userData, handleClose, submittin
             <Grid>
                 <Button
                     color="primary"
-                    disabled={submitting}
+                    disabled={!functionOfEmail}
                     variant="contained"
                     style={{ marginRight: 10 }}
                     onClick={handleSubmit}

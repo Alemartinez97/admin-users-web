@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import {Paper, Grid, TextField, Button, Avatar, Typography} from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import { withRouter } from "react-router";
+import { withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSnackbar } from "notistack";
 
