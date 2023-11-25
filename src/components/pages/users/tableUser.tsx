@@ -97,7 +97,7 @@ const TableUser = (props: any) => {
         <MaterialTable
           actions={[
             {
-              icon: () => <span>{<tableIcons.Add />}</span>,
+              icon: () => <span>{tableIcons.Add}</span>,
               onClick: () => {
                 setUserData(userInfo);
                 setOpen(true);
@@ -107,13 +107,13 @@ const TableUser = (props: any) => {
               tooltip: "Nuevo Usuario",
             },
             {
-              icon: () => <span>{<tableIcons.Edit />}</span>,
-              onClick: (event, rowData: any) => {
+              icon: () => <span>{tableIcons.Edit}</span>,
+              onClick: (event: any, rowData: any) => {
                 setUserData(rowData);
                 setOpen(true);
                 setValue(true);
               },
-              onRowUpdate: true,
+              // onRowUpdate: true,
               tooltip: "Editar Usuario",
             },
           ]}

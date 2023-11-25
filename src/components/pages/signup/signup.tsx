@@ -1,16 +1,12 @@
 import React, { useState } from "react";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
+import { Paper, Grid, TextField, Button, Avatar, Typography } from "@material-ui/core";
 import { withRouter } from "react-router";
-import api from "../../utils/api";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSnackbar } from "notistack";
+
+import api from "../../utils/api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
-const userInfo = {
+const userInfo: IUser = {
   surname: "",
   email: "",
   role: "",
@@ -52,13 +48,15 @@ const userInfo = {
   dni: "",
   age: "",
   phone: "",
+  password: ""
 }
-const Signup = ({ history }) => {
+const Signup = (props: { history: any; }) => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const [data, setData] = useState(userInfo);
+  const { history } = props;
   const { name, surname, dni, age, phone, password, email } = data;
-  const handleSubmit = (response) => {
+  const handleSubmit = () => {
     return api
       .post("/signup", data)
       .then((result) => {
@@ -94,7 +92,6 @@ const Signup = ({ history }) => {
               name="name"
               margin="normal"
               value={name}
-              className={classes.textField}
               onChange={(e) =>
                 setData({ ...data, name: e.target.value })
               }
@@ -107,7 +104,6 @@ const Signup = ({ history }) => {
               name="surname"
               margin="normal"
               value={surname}
-              className={classes.textField}
               onChange={(e) =>
                 setData({ ...data, surname: e.target.value })
               }
@@ -120,7 +116,6 @@ const Signup = ({ history }) => {
               name="age"
               margin="normal"
               value={age}
-              className={classes.textField}
               onChange={(e) =>
                 setData({ ...data, age: e.target.value })
               }
@@ -133,7 +128,6 @@ const Signup = ({ history }) => {
               name="phone"
               margin="normal"
               value={phone}
-              className={classes.textField}
               onChange={(e) =>
                 setData({ ...data, phone: e.target.value })
               }
@@ -146,7 +140,6 @@ const Signup = ({ history }) => {
               name="dni"
               margin="normal"
               value={dni}
-              className={classes.textField}
               onChange={(e) =>
                 setData({ ...data, dni: e.target.value })
               }
@@ -160,7 +153,6 @@ const Signup = ({ history }) => {
               name="email"
               margin="normal"
               value={email}
-              className={classes.textField}
               onChange={(e) =>
                 setData({ ...data, email: e.target.value })
               }
@@ -172,7 +164,6 @@ const Signup = ({ history }) => {
               type="password"
               margin="normal"
               value={password}
-              className={classes.textField}
               onChange={(e) =>
                 setData({ ...data, password: e.target.value })
               }

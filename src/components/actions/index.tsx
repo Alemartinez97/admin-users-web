@@ -17,3 +17,11 @@ export const editUser = (payload: IUser) => {
 export const addUser = (payload: IUser) => {
   return { type: ADD_USER, payload };
 };
+
+export default 
+{
+  setUser,
+  deleteUser,
+  editUser,
+  addUser
+}

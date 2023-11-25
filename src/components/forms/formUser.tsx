@@ -102,14 +102,16 @@ export default function FormUser({ setUserData, userData, handleClose, submittin
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
+                        variant="standard"
                         id="email"
                         type="email"
                         onChange={(e) =>
                             setUserData({ ...userData, email: e.target.value })
                         }
                         value={userData.email}
-                        label={"Correo"}
+                        label={"Error"}
                         fullWidth
+                        error
                     />
                 </Grid>
                 <Grid item xs={12}>
