@@ -7,6 +7,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useSnackbar } from "notistack";
 
 import api from "../../utils/api";
+import { isValid } from "../../utils/isValid";
+import { AGE, DNI, EMAIL, NAME, PASSWORD, PHONE } from "../../constant/constant";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,6 +59,14 @@ const Signup = (props: { history: any; }) => {
   const [data, setData] = useState(userInfo);
   const { history } = props;
   const { name, surname, dni, age, phone, password, email } = data;
+  const functionOfEmail = isValid(email, EMAIL);
+  const functionOfPhone = isValid(phone.toString(), PHONE);
+  const functionOfAge = isValid(age.toString(), AGE);
+  const functionOfDni = isValid(dni.toString(), DNI);
+  const functionOfName = isValid(name, NAME);
+  const functionOfSurname = isValid(surname, NAME);
+  const functionOfPassword = password?.length === 60 ? true : isValid(password ? password?.toString() : "", PASSWORD);
+  const isDisable = functionOfEmail && functionOfPhone && functionOfAge && functionOfName && functionOfSurname && functionOfAge && functionOfDni && functionOfPassword;
   const handleSubmit = () => {
     return api
       .post("/signup", data)
@@ -88,22 +99,24 @@ const Signup = (props: { history: any; }) => {
             <TextField
               variant="outlined"
               autoFocus
-              label="Name"
               name="name"
               margin="normal"
               value={name}
               onChange={(e) =>
                 setData({ ...data, name: e.target.value })
               }
+              label={!functionOfName ? "Nombre Invalido" : "Nombre"}
+              error={!functionOfName}
               fullWidth
             />
             <TextField
               variant="outlined"
               autoFocus
-              label="Apellido"
               name="surname"
               margin="normal"
               value={surname}
+              label={!functionOfSurname ? "Apellido Invalido" : "Apellido"}
+              error={!functionOfSurname}
               onChange={(e) =>
                 setData({ ...data, surname: e.target.value })
               }
@@ -112,43 +125,45 @@ const Signup = (props: { history: any; }) => {
             <TextField
               variant="outlined"
               autoFocus
-              label="Edad"
               name="age"
               margin="normal"
               value={age}
               onChange={(e) =>
                 setData({ ...data, age: e.target.value })
               }
+              label={!functionOfAge ? "Edad Invalida" : "Edad"}
+              error={!functionOfAge}
               fullWidth
             />
             <TextField
               variant="outlined"
               autoFocus
-              label="Celular"
               name="phone"
               margin="normal"
               value={phone}
               onChange={(e) =>
                 setData({ ...data, phone: e.target.value })
               }
+              label={!functionOfPhone ? "Celular Invalido" : "Celular"}
+              error={!functionOfPhone}
               fullWidth
             />
             <TextField
               variant="outlined"
               autoFocus
-              label="Nro de documento"
               name="dni"
               margin="normal"
               value={dni}
               onChange={(e) =>
                 setData({ ...data, dni: e.target.value })
               }
+              label={!functionOfDni ? "Dni invalido" : "Nro de documento"}
+              error={!functionOfDni}
               fullWidth
             />
             <TextField
               variant="outlined"
               autoFocus
-              label="Email"
               type="email"
               name="email"
               margin="normal"
@@ -156,10 +171,11 @@ const Signup = (props: { history: any; }) => {
               onChange={(e) =>
                 setData({ ...data, email: e.target.value })
               }
+              label={!functionOfEmail ? "Correo Invalido" : "Email"}
+              error={!functionOfEmail}
               fullWidth
             />
             <TextField
-              label="Contraseña"
               name="password"
               type="password"
               margin="normal"
@@ -167,15 +183,19 @@ const Signup = (props: { history: any; }) => {
               onChange={(e) =>
                 setData({ ...data, password: e.target.value })
               }
+              label={!functionOfPassword ? "Contraseña invalida, debe tener minimo 8 caracteres con numeros y letras" : "Contraseña"}
+              error={!functionOfPassword}
               variant="outlined"
               fullWidth
             />
             <Button
+              data-testid="signup-button"
               className={classes.submit}
               variant="contained"
               color="primary"
               onClick={() => handleSubmit()}
               fullWidth
+              disabled={!isDisable}
             >
               Crear una cuenta
             </Button>

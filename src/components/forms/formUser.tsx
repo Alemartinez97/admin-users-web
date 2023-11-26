@@ -12,7 +12,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
 import { isValid } from "../utils/isValid";
-import { AGE, DNI, EMAIL, NAME, PHONE } from "../constant/constant";
+import { AGE, DNI, EMAIL, NAME, PASSWORD, PHONE } from "../constant/constant";
 
 const useStyles = makeStyles((theme) => ({
     dialog: {
@@ -29,18 +29,22 @@ const useStyles = makeStyles((theme) => ({
         width: 500,
         margin: theme.spacing(6, 6, 3),
     },
+    grid: {
+        marginBottom:'15px'
+    }
 }));
 
-export default function FormUser({ setUserData, userData, handleClose, submitting, open, handleSubmit }: IUserFormProps) {
-    const {password, name, surname,age,dni, email, role, phone } = userData;
+export default function FormUser({ setUserData, userData, handleClose, open, handleSubmit }: IUserFormProps) {
+    const classes = useStyles();
+    const { password, name, surname, age, dni, email, role, phone } = userData;
     const functionOfEmail = isValid(email, EMAIL);
     const functionOfPhone = isValid(phone.toString(), PHONE);
     const functionOfAge = isValid(age.toString(), AGE);
     const functionOfDni = isValid(dni.toString(), DNI);
     const functionOfName = isValid(name, NAME);
     const functionOfSurname = isValid(surname, NAME);
-
-    const classes = useStyles();
+    const functionOfPassword = password?.length === 60 ? true : isValid(password ? password?.toString() : "", PASSWORD);
+    const isDisable = functionOfEmail && functionOfPhone && functionOfAge && functionOfName && functionOfSurname && functionOfAge && functionOfDni && functionOfPassword;
     const body = (
         <form
             noValidate
@@ -51,7 +55,7 @@ export default function FormUser({ setUserData, userData, handleClose, submittin
                 Datos del usuario
             </Typography>
             <Grid container>
-                <Grid item xs={12}>
+                <Grid item xs={12} className={classes.grid}>
                     <TextField
                         id="name"
                         onChange={(e) =>
@@ -63,7 +67,7 @@ export default function FormUser({ setUserData, userData, handleClose, submittin
                         fullWidth
                     />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} className={classes.grid}>
                     <TextField
                         id="surname"
                         onChange={(e) =>
@@ -75,7 +79,7 @@ export default function FormUser({ setUserData, userData, handleClose, submittin
                         fullWidth
                     />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} className={classes.grid}>
                     <TextField
                         type="number"
                         id="age"
@@ -88,7 +92,7 @@ export default function FormUser({ setUserData, userData, handleClose, submittin
                         fullWidth
                     />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} className={classes.grid}>
                     <TextField
                         type="number"
                         id="phone"
@@ -101,7 +105,7 @@ export default function FormUser({ setUserData, userData, handleClose, submittin
                         fullWidth
                     />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} className={classes.grid}>
                     <TextField
                         id="dni"
                         type="number"
@@ -115,7 +119,7 @@ export default function FormUser({ setUserData, userData, handleClose, submittin
                         fullWidth
                     />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} className={classes.grid}>
                     <TextField
                         variant="standard"
                         id="email"
@@ -129,7 +133,7 @@ export default function FormUser({ setUserData, userData, handleClose, submittin
                         fullWidth
                     />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} className={classes.grid}>
                     <TextField
                         id="password"
                         type="password"
@@ -137,12 +141,13 @@ export default function FormUser({ setUserData, userData, handleClose, submittin
                             setUserData({ ...userData, password: e.target.value })
                         }
                         value={password}
-                        label={"Clave"}
+                        label={!functionOfPassword ? "Contraseña invalida, debe tener minimo 8 caracteres con numeros y letras" : "Contraseña"}
+                        error={!functionOfPassword}
                         fullWidth
                     />
                 </Grid>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} className={classes.grid}>
                 <FormControl fullWidth>
                     {!role && <InputLabel id="demo-simple-select-label">Rol</InputLabel>}
                     <Select
@@ -159,7 +164,7 @@ export default function FormUser({ setUserData, userData, handleClose, submittin
             <Grid>
                 <Button
                     color="primary"
-                    disabled={!functionOfEmail}
+                    disabled={!isDisable}
                     variant="contained"
                     style={{ marginRight: 10 }}
                     onClick={handleSubmit}
