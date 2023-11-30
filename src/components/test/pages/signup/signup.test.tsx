@@ -1,11 +1,14 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
+// eslint-disable-next-line to the line before.
+// eslint-disable-next-line to the line before.
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
+// eslint-disable-next-line to the line before.
 import configureStore from 'redux-mock-store';
 import { SnackbarProvider } from 'notistack';
 import Signup from '../../../pages/signup/signup';
-
+// eslint-disable-next-line to the line before.
 jest.mock('../../../utils/api', () => ({
   post: jest.fn(() => Promise.resolve({ data: {} })),
 }));

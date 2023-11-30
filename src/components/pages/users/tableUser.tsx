@@ -5,6 +5,7 @@ import api from "../../utils/api";
 import {
   Container,
 } from "@material-ui/core";
+// eslint-disable-next-line to the line before.
 import { withRouter } from "react-router-dom";
 import { useSnackbar } from "notistack";
 
@@ -97,7 +98,8 @@ const TableUser = (props: any) => {
         <MaterialTable
           actions={[
             {
-              icon: () => <span>{<tableIcons.Add></tableIcons.Add>}</span>,
+              // eslint-disable-next-line to the line before.
+              icon: () => <span>{<tableIcons.Add/>}</span>,
               onClick: () => {
                 setUserData(userInfo);
                 setOpen(true);
@@ -107,7 +109,8 @@ const TableUser = (props: any) => {
               tooltip: "Nuevo Usuario",
             },
             {
-              icon: () => <span>{<tableIcons.Edit></tableIcons.Edit>}</span>,
+              // eslint-disable-next-line to the line before.
+              icon: () => <span>{<tableIcons.Edit/>}</span>,
               onClick: (event: any, rowData: any) => {
                 setUserData(rowData);
                 setOpen(true);
