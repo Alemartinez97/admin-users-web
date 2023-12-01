@@ -12,7 +12,7 @@
     "include": [
       "src/**/*.ts",
       "src/**/*.tsx"                      /* Incluye archivos TypeScript y TypeScript con JSX. */
-, "src/components/forms/icons.ts"    ],
+, "src/components/forms/icons.ts", "src/App.js"    ],
     "exclude": [
       "node_modules"
     ]

@@ -5,13 +5,13 @@ import api from "../../utils/api";
 import {
   Container,
 } from "@material-ui/core";
-// eslint-disable-next-line to the line before.
 import { withRouter } from "react-router-dom";
 import { useSnackbar } from "notistack";
 
 import tableIcons from "../../forms/icons";
 import { deleteUser, setUser, editUser } from "../../actions/index";
 import FormUser from "../../forms/formUser";
+
 const userInfo: IUser =
 {
   surname: "",
@@ -98,8 +98,7 @@ const TableUser = (props: any) => {
         <MaterialTable
           actions={[
             {
-              // eslint-disable-next-line to the line before.
-              icon: () => <span>{<tableIcons.Add/>}</span>,
+              icon: () => <span><tableIcons.Add/></span>,
               onClick: () => {
                 setUserData(userInfo);
                 setOpen(true);
@@ -109,14 +108,12 @@ const TableUser = (props: any) => {
               tooltip: "Nuevo Usuario",
             },
             {
-              // eslint-disable-next-line to the line before.
               icon: () => <span>{<tableIcons.Edit/>}</span>,
               onClick: (event: any, rowData: any) => {
                 setUserData(rowData);
                 setOpen(true);
                 setValue(true);
               },
-              // onRowUpdate: true,
               tooltip: "Editar Usuario",
             },
           ]}

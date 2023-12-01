@@ -33,7 +33,7 @@ const App = connect(
         <Route exact path={routes.login} component={Login} />
         {
           protectedRoute && <Route>
-            <Menu></Menu>
+            <Menu/>
             <Route exact path={routes.tableUser} component={tableUser} />
           </Route>
         }

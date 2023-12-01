@@ -1,5 +1,4 @@
-// eslint-disable-next-line to the line before.
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { post } from '../utils/api';
 export const useProtectedRoute = () => {
     const [state, setState] = useState(false);

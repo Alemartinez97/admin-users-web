@@ -1,11 +1,10 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-// eslint-disable-next-line to the line before.
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-// eslint-disable-next-line to the line before.
 import configureStore from 'redux-mock-store';
 import { SnackbarProvider } from 'notistack';
+
 import TableUser from '../../../pages/users/tableUser';
 
 jest.mock('../../../utils/api', () => ({
