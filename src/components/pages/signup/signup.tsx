@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSnackbar } from "notistack";
 
-import api from "../../utils/api";
+import { post } from "../../utils/api";
 import { isValid } from "../../utils/isValid";
 import { AGE, DNI, EMAIL, NAME, PASSWORD, PHONE } from "../../constant/constant";
 
@@ -68,8 +68,7 @@ const Signup = (props: { history: any; }) => {
   const functionOfPassword = password?.length === 60 ? true : isValid(password ? password?.toString() : "", PASSWORD);
   const isDisable = functionOfEmail && functionOfPhone && functionOfAge && functionOfName && functionOfSurname && functionOfAge && functionOfDni && functionOfPassword;
   const handleSubmit = () => {
-    return api
-      .post("/signup", data)
+    return post("/signup", data)
       .then((result) => {
         enqueueSnackbar("Usuario " + email + " registrado con exito ", {
           variant: "success",

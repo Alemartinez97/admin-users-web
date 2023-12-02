@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import {Paper, Grid, TextField, Button, Avatar, Typography} from "@material-ui/core";
+import { Paper, Grid, TextField, Button, Avatar, Typography } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSnackbar } from "notistack";
 
-import api from "../../utils/api";
+import { post } from "../../utils/api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,9 +52,8 @@ const Login = (props: { history: any; }) => {
       email,
       password,
     };
-    return api
-      .post("/login", values)
-      .then((result) => {
+    return post("/login", values)
+      .then((result: any) => {
         if (result.data.token) {
           const token = result.data.token.replace(/[ '"]+/g, " ");
           localStorage.setItem("token", token);

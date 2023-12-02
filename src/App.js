@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 
 import Menu from "./components/pages/menu/menu";
-import instance from "./components/utils/api";
+import { get } from "./components/utils/api";
 import { addUser } from "./components/actions/index";
 import Login from "./components/pages/login/login";
 import Signup from "./components/pages/signup/signup";
@@ -20,12 +20,12 @@ const App = connect(
   null,
   mapDispatchToProps
 )((props) => {
-  const  protectedRoute = useProtectedRoute();
+  const protectedRoute = useProtectedRoute();
   useEffect(() => {
-    instance.get(`/users`).then((result) => {
+    get(`/users`).then((result) => {
       props.addUser(result.data);
     }).catch(err => console.error(err));
-  },[]);
+  }, []);
   return (
     <BrowserRouter>
       <Switch>
@@ -33,7 +33,7 @@ const App = connect(
         <Route exact path={routes.login} component={Login} />
         {
           protectedRoute && <Route>
-            <Menu/>
+            <Menu />
             <Route exact path={routes.tableUser} component={tableUser} />
           </Route>
         }
@@ -47,7 +47,7 @@ function mapDispatchToProps(dispatch) {
     addUser: (user) => dispatch(addUser(user)),
   };
 }
-const ConnectedApp = (props) => {
+const ConnectedApp = () => {
   return (
     <Provider store={store}>
       <SnackbarProvider>

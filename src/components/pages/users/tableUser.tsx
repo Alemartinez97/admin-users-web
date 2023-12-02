@@ -1,7 +1,7 @@
 import React from "react";
 import MaterialTable from "material-table";
 import { connect } from "react-redux";
-import api from "../../utils/api";
+import { put, post, _delete } from "../../utils/api";
 import {
   Container,
 } from "@material-ui/core";
@@ -48,8 +48,7 @@ const TableUser = (props: any) => {
     ) {
       if (value) {
         handleClose();
-        return api
-          .put(`/users/${userData.dni}`, userData)
+        return put(`/users/${userData.dni}`, userData)
           .then((data) => {
             props.editUser(userData);
             enqueueSnackbar(
@@ -67,8 +66,7 @@ const TableUser = (props: any) => {
           });
       } else {
         handleClose();
-        return api
-          .post("/users", userData)
+        return post("/users", userData)
           .then((data) => {
             props.setUser(userData);
             enqueueSnackbar(
@@ -98,7 +96,7 @@ const TableUser = (props: any) => {
         <MaterialTable
           actions={[
             {
-              icon: () => <span><tableIcons.Add/></span>,
+              icon: () => <span><tableIcons.Add /></span>,
               onClick: () => {
                 setUserData(userInfo);
                 setOpen(true);
@@ -108,7 +106,7 @@ const TableUser = (props: any) => {
               tooltip: "Nuevo Usuario",
             },
             {
-              icon: () => <span>{<tableIcons.Edit/>}</span>,
+              icon: () => <span>{<tableIcons.Edit />}</span>,
               onClick: (event: any, rowData: any) => {
                 setUserData(rowData);
                 setOpen(true);
@@ -160,8 +158,7 @@ const TableUser = (props: any) => {
           data={user}
           editable={{
             onRowDelete: (newData) => {
-              return api
-                ._delete(`/users/${newData.dni}`)
+              return _delete(`/users/${newData.dni}`)
                 .then((data) => {
                   props.deleteUser(newData);
                   enqueueSnackbar(

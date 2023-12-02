@@ -1,19 +1,11 @@
 import React from "react";
 import clsx from "clsx";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
+import { ChevronLeft, ChevronRight, Menu as MenuIcon } from "@material-ui/icons";
+import {
+  ListItemIcon, ListItem, Divider,
+  Typography, IconButton, List, Toolbar, AppBar, CssBaseline, Drawer,
+  makeStyles, useTheme
+} from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 const drawerWidth = 240;
 
@@ -22,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
   toolbar: {
-    // background: "#69f0ae",
   },
   appBar: {
     transition: theme.transitions.create(["margin", "width"], {
@@ -76,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Menu = ({ history }) => {
+const Menu = ({ history }: any) => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -105,7 +96,7 @@ const Menu = ({ history }) => {
             edge="start"
             className={clsx(classes.menuButton, open && classes.hide)}
           >
-            <MenuIcon />
+            <MenuIcon  />
           </IconButton>
           <Typography noWrap>Usuarios</Typography>
         </Toolbar>
@@ -122,9 +113,9 @@ const Menu = ({ history }) => {
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
+              <ChevronLeft />
             ) : (
-              <ChevronRightIcon />
+              <ChevronRight />
             )}
           </IconButton>
         </div>

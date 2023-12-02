@@ -36,9 +36,3 @@ export const _delete = (url: string) => {
 export const put = (url: string, body?: any) => {
   return instance.put(`${url}`, body);
 };
-export default {
-  get,
-  post,
-  put,
-  _delete,
-}
