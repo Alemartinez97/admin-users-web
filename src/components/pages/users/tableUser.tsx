@@ -49,7 +49,7 @@ const TableUser = (props: any) => {
       if (value) {
         handleClose();
         return put(`/users/${userData.dni}`, userData)
-          .then((data) => {
+          .then((data: any) => {
             props.editUser(userData);
             enqueueSnackbar(
               "El usuario " + name + " fue actualizado con exito ",
@@ -58,8 +58,8 @@ const TableUser = (props: any) => {
               }
             );
           })
-          .catch((err) => {
-            enqueueSnackbar("Error, El usuario no se actualizo. " + err.msg, {
+          .catch((err: Error) => {
+            enqueueSnackbar("Error, El usuario no se actualizo. " + err, {
               variant: "error",
             });
             console.error("Mutation error:", err);
@@ -67,7 +67,7 @@ const TableUser = (props: any) => {
       } else {
         handleClose();
         return post("/users", userData)
-          .then((data) => {
+          .then((data: any) => {
             props.setUser(userData);
             enqueueSnackbar(
               "EL usuario " + name + " fue guardada con exito ",
@@ -76,8 +76,8 @@ const TableUser = (props: any) => {
               }
             );
           })
-          .catch((err) => {
-            enqueueSnackbar("Error, EL usuario no  fue creado. " + err.msg, {
+          .catch((err: Error) => {
+            enqueueSnackbar("Error, EL usuario no  fue creado. " + err, {
               variant: "error",
             });
             console.error("Mutation error:", err);
@@ -159,7 +159,7 @@ const TableUser = (props: any) => {
           editable={{
             onRowDelete: (newData) => {
               return _delete(`/users/${newData.dni}`)
-                .then((data) => {
+                .then((data: any) => {
                   props.deleteUser(newData);
                   enqueueSnackbar(
                     "EL usuario " + name + " fue eliminado con exito ",
@@ -168,9 +168,9 @@ const TableUser = (props: any) => {
                     }
                   );
                 })
-                .catch((err) => {
+                .catch((err: Error) => {
                   enqueueSnackbar(
-                    "Error, EL usuario no  fue eliminado. " + err.msg,
+                    "Error, EL usuario no  fue eliminado. " + err,
                     {
                       variant: "error",
                     }

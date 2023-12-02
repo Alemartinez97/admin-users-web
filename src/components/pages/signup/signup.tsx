@@ -69,13 +69,13 @@ const Signup = (props: { history: any; }) => {
   const isDisable = functionOfEmail && functionOfPhone && functionOfAge && functionOfName && functionOfSurname && functionOfAge && functionOfDni && functionOfPassword;
   const handleSubmit = () => {
     return post("/signup", data)
-      .then((result) => {
+      .then((result: any) => {
         enqueueSnackbar("Usuario " + email + " registrado con exito ", {
           variant: "success",
         });
         history.push("/login");
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         enqueueSnackbar("El usuario " + email + " no se registro " + err, {
           variant: "error",
         });

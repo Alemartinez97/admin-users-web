@@ -63,7 +63,7 @@ const Login = (props: { history: any; }) => {
         });
         history.push("/");
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         enqueueSnackbar("El usuario " + email + " no inicio   sesión  " + err, {
           variant: "error",
         });
