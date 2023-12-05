@@ -11,7 +11,7 @@ import { addUser } from "./components/actions/index";
 import Login from "./components/pages/login/login";
 import Signup from "./components/pages/signup/signup";
 import store from "./components/store/index";
-import routes from "./components/routes";
+import routes from "./components/routes/routes";
 import tableUser from "./components/pages/users/tableUser";
 import NotFound from "./components/pages/notFound/notFound";
 import { useProtectedRoute } from "./components/hooks/useProtectedRoute";
