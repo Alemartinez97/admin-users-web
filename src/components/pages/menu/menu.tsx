@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import clsx from "clsx";
 import { ChevronLeft, ChevronRight, Menu as MenuIcon } from "@material-ui/icons";
 import {
@@ -6,7 +6,7 @@ import {
   Typography, IconButton, List, Toolbar, AppBar, CssBaseline, Drawer,
   makeStyles, useTheme
 } from "@material-ui/core";
-import { withRouter } from "react-router-dom";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Menu = ({ history }: any) => {
+const Menu: React.FunctionComponent<RouteComponentProps> = ({ history }) => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -96,7 +96,7 @@ const Menu = ({ history }: any) => {
             edge="start"
             className={clsx(classes.menuButton, open && classes.hide)}
           >
-            <MenuIcon  />
+            <MenuIcon />
           </IconButton>
           <Typography noWrap>Usuarios</Typography>
         </Toolbar>

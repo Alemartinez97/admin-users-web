@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { FunctionComponent, useState } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { Paper, Grid, TextField, Button, Avatar, Typography } from "@material-ui/core";
-import { withRouter } from "react-router-dom";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSnackbar } from "notistack";
 
@@ -53,11 +53,10 @@ const userInfo: IUser = {
   phone: "",
   password: ""
 }
-const Signup = (props: { history: any; }) => {
+const Signup: React.FunctionComponent<RouteComponentProps> = ({ history }) => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const [data, setData] = useState(userInfo);
-  const { history } = props;
   const { name, surname, dni, age, phone, password, email } = data;
   const functionOfEmail = isValid(email, EMAIL);
   const functionOfPhone = isValid(phone.toString(), PHONE);
