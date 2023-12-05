@@ -3,45 +3,12 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { Paper, Grid, TextField, Button, Avatar, Typography } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
 import { useSnackbar } from "notistack";
 
 import { post } from "../../utils/api";
+import { useStyles } from "./style";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    height: "100vh",
-  },
-  image: {
-    backgroundImage: "url(https://source.unsplash.com/random)",
-    backgroundRepeat: "no-repeat",
-    backgroundColor:
-      theme.palette.type === "light"
-        ? theme.palette.grey[50]
-        : theme.palette.grey[900],
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-  },
-  paper: {
-    margin: theme.spacing(8, 4),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
-
-const Login: React.FunctionComponent<RouteComponentProps> = ({ history }) => {
+const Login: FunctionComponent<RouteComponentProps> = ({ history }) => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const [email, setEmail] = useState("");

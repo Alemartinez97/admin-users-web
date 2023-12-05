@@ -3,46 +3,13 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { Paper, Grid, TextField, Button, Avatar, Typography } from "@material-ui/core";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
 import { useSnackbar } from "notistack";
 
 import { post } from "../../utils/api";
 import { isValid } from "../../utils/isValid";
 import { AGE, DNI, EMAIL, NAME, PASSWORD, PHONE } from "../../constant/constant";
+import { useStyles } from "./style";
 
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    height: "100vh",
-  },
-  image: {
-    backgroundImage: "url(https://source.unsplash.com/random)",
-    backgroundRepeat: "no-repeat",
-    backgroundColor:
-      theme.palette.type === "light"
-        ? theme.palette.grey[50]
-        : theme.palette.grey[900],
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-  },
-  paper: {
-    margin: theme.spacing(8, 4),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
 const userInfo: IUser = {
   surname: "",
   email: "",
